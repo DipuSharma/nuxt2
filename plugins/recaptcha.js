@@ -18,11 +18,5 @@ export default ({ env }, inject) => {
         useRecaptchaNet: true, // Optional, depending on your region
       },
     });
-
-    // Ensure that $recaptcha is available before injecting it
-    Vue.prototype.$recaptcha.onLoad(() => {
-      // Inject the $recaptcha globally into Vue components
-      inject("recaptcha", Vue.prototype.$recaptcha);
-    });
   }
 };

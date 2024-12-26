@@ -6,42 +6,46 @@
 
 <script>
 export default {
-  mounted() {
-    // Ensure that reCAPTCHA is loaded
-    if (this.$recaptcha) {
-      console.log("reCAPTCHA is ready");
-    } else {
-      console.error("reCAPTCHA is not loaded properly");
-    }
-  },
   methods: {
     async onSubmit() {
       try {
-        if (!this.$recaptcha) {
-          console.error("$recaptcha is not available");
-          return;
-        }
-
-        // Execute reCAPTCHA with an action name
-        const token = await this.$recaptcha.execute("homepage"); // "homepage" is the action name
-
+        const token = await this.executeRecaptcha("submit");
         console.log("reCAPTCHA token:", token);
 
-        // Send token to your backend for validation
+        // Send the token to your backend
         await this.submitToBackend(token);
       } catch (error) {
-        console.error("reCAPTCHA error:", error);
+        console.error("Error during reCAPTCHA execution:", error);
       }
     },
+    async executeRecaptcha(action) {
+      return new Promise((resolve, reject) => {
+        if (typeof grecaptcha !== "undefined") {
+          grecaptcha.ready(() => {
+            grecaptcha
+              .execute("6LfTpaQqAAAAAHo7ax_C_K4OkIopH75t2IsQNtgY", { action })
+              .then(resolve)
+              .catch(reject);
+          });
+        } else {
+          reject("reCAPTCHA is not loaded");
+        }
+      });
+    },
     async submitToBackend(token) {
-      console.log("Token to backend:", token);
-      // Replace this with your actual API call
       try {
-        // Example API call to submit the token
-        const response = await this.$axios.post("/api/verify-recaptcha", {
-          token,
+        const response = await fetch("/api/verify-recaptcha", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token }),
         });
-        console.log("Backend response:", response);
+
+        if (!response.ok) throw new Error("Backend verification failed");
+
+        const data = await response.json();
+        console.log("Backend response:", data);
       } catch (error) {
         console.error("Error sending token to backend:", error);
       }

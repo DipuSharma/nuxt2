@@ -8,6 +8,13 @@ export default {
     htmlAttrs: {
       lang: "en",
     },
+    script: [
+      {
+        src: "https://www.google.com/recaptcha/api.js?render=6LfTpaQqAAAAAHo7ax_C_K4OkIopH75t2IsQNtgY",
+        async: true,
+        defer: true,
+      },
+    ],
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -21,7 +28,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: "~/plugins/recaptcha.js", ssr: false }],
+
   env: {
     RECAPTCHA_SITE_KEY: process.env.RECAPTCHA_SITE_KEY,
   },
