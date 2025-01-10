@@ -32,7 +32,7 @@ export default {
   env: {
     RECAPTCHA_SITE_KEY: process.env.RECAPTCHA_SITE_KEY,
   },
-  plugins: [{ src: "~/plugins/recaptcha.js", mode: "client" }],
+  // plugins: [{ src: "~/plugins/recaptcha.js", mode: "client" }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
