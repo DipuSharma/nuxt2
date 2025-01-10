@@ -7513,6 +7513,11 @@ readdirp@~3.6.0:
   dependencies:
     picomatch "^2.2.1"
 
+recaptcha-v3@^1.8.0:
+  version "1.11.3"
+  resolved "https://registry.yarnpkg.com/recaptcha-v3/-/recaptcha-v3-1.11.3.tgz#ea0ba6da462196236c243bc1fbba4a4072646d26"
+  integrity sha512-sEE6J0RzUkS+sKEBpgCD/AqCU0ffrAVOADGjvAx9vcttN+VLK42SWMkj/J/I6vHu3Kew+xcfbBqDVb65N0QGDw==
+
 reflect.getprototypeof@^1.0.6, reflect.getprototypeof@^1.0.9:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/reflect.getprototypeof/-/reflect.getprototypeof-1.0.9.tgz#c905f3386008de95a62315f3ea8630404be19e2f"
@@ -9031,6 +9036,13 @@ vue-no-ssr@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/vue-no-ssr/-/vue-no-ssr-1.1.1.tgz#875f3be6fb0ae41568a837f3ac1a80eaa137b998"
   integrity sha512-ZMjqRpWabMPqPc7gIrG0Nw6vRf1+itwf0Itft7LbMXs2g3Zs/NFmevjZGN1x7K3Q95GmIjWbQZTVerxiBxI+0g==
+
+vue-recaptcha-v3@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/vue-recaptcha-v3/-/vue-recaptcha-v3-2.0.1.tgz#10b07bbe07881734b9997111cfe3c9a9ca786bdb"
+  integrity sha512-isEDtOfHU4wWRrZZuxciAELtQmPOeEEdicPNa0f1AOyLPy3sCcBEcpFt+FOcO3RQv5unJ3Yn5NlsWtXv9rXqjg==
+  dependencies:
+    recaptcha-v3 "^1.8.0"
 
 vue-recaptcha@^3.0.0-alpha.6:
   version "3.0.0-alpha.6"

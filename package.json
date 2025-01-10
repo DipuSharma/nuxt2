@@ -16,6 +16,7 @@
     "tailwindcss": "^3.4.17",
     "vue": "^2.7.10",
     "vue-recaptcha": "^3.0.0-alpha.6",
+    "vue-recaptcha-v3": "^2.0.1",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10"
   },

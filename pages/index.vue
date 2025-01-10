@@ -13,7 +13,7 @@ export default {
         console.log("reCAPTCHA token:", token);
 
         // Send the token to your backend
-        await this.submitToBackend(token);
+        // await this.submitToBackend(token);
       } catch (error) {
         console.error("Error during reCAPTCHA execution:", error);
       }
@@ -53,3 +53,10 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+div.grecaptcha-badge {
+  display: none !important;
+  width: 0 !important;
+}
+</style>

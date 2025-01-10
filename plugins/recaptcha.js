@@ -1,22 +1,17 @@
-import Vue from "vue";
-import { VueReCaptcha } from "vue-recaptcha-v3";
+import { load } from "recaptcha-v3";
 
-export default ({ env }, inject) => {
-  const siteKey =
-    env.RECAPTCHA_SITE_KEY || "6LfTpaQqAAAAAHo7ax_C_K4OkIopH75t2IsQNtgY";
+export default (context, inject) => {
+  const recaptchaSiteKey = process.env.RECAPTCHA_SITE_KEY;
 
-  if (!siteKey) {
-    console.error("Missing reCAPTCHA site key.");
+  if (!recaptchaSiteKey) {
+    console.error("Missing reCAPTCHA site key in .env file");
     return;
   }
-
-  // Initialize VueReCaptcha plugin only on the client side
-  if (process.client) {
-    Vue.use(VueReCaptcha, {
-      siteKey,
-      loaderOptions: {
-        useRecaptchaNet: true, // Optional, depending on your region
-      },
+  load(recaptchaSiteKey)
+    .then((recaptchaInstance) => {
+      inject("recaptcha", recaptchaInstance);
+    })
+    .catch((err) => {
+      console.error("Failed to load reCAPTCHA:", err);
     });
-  }
 };
