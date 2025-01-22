@@ -1,36 +1,30 @@
 <template>
-  <form @submit.prevent="onSubmit">
-    <button type="submit">Submit</button>
-  </form>
+  <div>
+    <Circular :progress="progress" displayValue="50" />
+    <input
+      type="range"
+      min="0"
+      max="100"
+      v-model="progress"
+      style="margin-top: 20px"
+    />
+  </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      progress: 70,
+    };
+  },
   methods: {
     async onSubmit() {
       try {
-        const token = await this.executeRecaptcha("submit");
-        console.log("reCAPTCHA token:", token);
-
-        // Send the token to your backend
-        // await this.submitToBackend(token);
+        console.log("Executing reCAPTCHA...");
       } catch (error) {
         console.error("Error during reCAPTCHA execution:", error);
       }
-    },
-    async executeRecaptcha(action) {
-      return new Promise((resolve, reject) => {
-        if (typeof grecaptcha !== "undefined") {
-          grecaptcha.ready(() => {
-            grecaptcha
-              .execute("6LfTpaQqAAAAAHo7ax_C_K4OkIopH75t2IsQNtgY", { action })
-              .then(resolve)
-              .catch(reject);
-          });
-        } else {
-          reject("reCAPTCHA is not loaded");
-        }
-      });
     },
     async submitToBackend(token) {
       try {
