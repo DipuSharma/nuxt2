@@ -19,31 +19,22 @@ export default {
     };
   },
   methods: {
-    async onSubmit() {
-      try {
-        console.log("Executing reCAPTCHA...");
-      } catch (error) {
-        console.error("Error during reCAPTCHA execution:", error);
-      }
+    redirectToSpecificUrl() {
+      window.location.href = "https://example.com";
     },
-    async submitToBackend(token) {
-      try {
-        const response = await fetch("/api/verify-recaptcha", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ token }),
-        });
-
-        if (!response.ok) throw new Error("Backend verification failed");
-
-        const data = await response.json();
-        console.log("Backend response:", data);
-      } catch (error) {
-        console.error("Error sending token to backend:", error);
-      }
+    preventBackNavigation() {
+      history.pushState(null, null, window.location.href);
     },
+    handlePopState() {
+      this.redirectToSpecificUrl();
+    },
+  },
+  mounted() {
+    this.preventBackNavigation();
+    window.addEventListener("popstate", this.handlePopState);
+  },
+  beforeDestroy() {
+    window.removeEventListener("popstate", this.handlePopState);
   },
 };
 </script>
