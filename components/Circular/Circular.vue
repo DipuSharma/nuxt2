@@ -1,22 +1,22 @@
 <template>
   <div class="circular-progress" :style="{ backgroundColor: bgColor }">
     <svg
-      viewBox="0 0 36 36"
+      viewBox="0 -5 30 80"
       xmlns="http://www.w3.org/2000/svg"
       class="circular-chart"
     >
       <path
         class="circle-bg"
         d="M18 2.0845
-          a 15.9155 15.9155 0 0 1 0 31.831
-          a 15.9155 15.9155 0 0 1 0 -31.831"
+          a 14 14 0 0 1 0 28
+          a 14 14 0 0 1 0 -28"
       />
       <path
         class="circle"
         :stroke-dasharray="`${progress}, 100`"
         d="M18 2.0845
-          a 15.9155 15.9155 0 0 1 0 31.831
-          a 15.9155 15.9155 0 0 1 0 -31.831"
+          a 14 14 0 0 1 0 28
+          a 14 14 0 0 1 0 -28"
       />
     </svg>
     <div class="progress-text">
@@ -62,13 +62,13 @@ export default {
 }
 .circle-bg {
   fill: none;
-  stroke: #e6e6e6;
-  stroke-width: 4;
+  stroke: #e6e6e6d2;
+  stroke-width: 8;
 }
 .circle {
   fill: none;
-  stroke: #28e003;
-  stroke-width: 4;
+  stroke: #ffffff;
+  stroke-width: 8;
   /* stroke-linecap: round; */
   transition: stroke-dasharray 0.3s ease;
 }
@@ -76,6 +76,6 @@ export default {
   position: absolute;
   font-size: 18px;
   font-weight: bold;
-  color: #007c91;
+  color: #000000;
 }
 </style>

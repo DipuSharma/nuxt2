@@ -20,21 +20,24 @@ export default {
   },
   methods: {
     redirectToSpecificUrl() {
-      window.location.href = "https://example.com";
+      // Redirect to the desired URL
+      window.location.href = "https://example.com"; // Replace with your URL
     },
     preventBackNavigation() {
-      history.pushState(null, null, window.location.href);
-    },
-    handlePopState() {
-      this.redirectToSpecificUrl();
+      if (process.client) {
+        // Push a dummy state into the history
+        history.pushState(null, null, window.location.href);
+
+        // Prevent navigating backward
+        window.addEventListener("popstate", () => {
+          this.redirectToSpecificUrl();
+        });
+      }
     },
   },
   mounted() {
+    // Prevent back navigation only on the client-side
     this.preventBackNavigation();
-    window.addEventListener("popstate", this.handlePopState);
-  },
-  beforeDestroy() {
-    window.removeEventListener("popstate", this.handlePopState);
   },
 };
 </script>
