@@ -31,5 +31,6 @@ export default {
 <style scoped>
 .tex-color {
   color: red;
+  font-size: 72px;
 }
 </style>

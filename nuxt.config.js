@@ -2,7 +2,16 @@ export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: true,
 
-  // Global page headers: https://go.nuxtjs.dev/config-head
+  css: ["@/assets/css/tailwind.css"],
+  buildModules: ["@nuxt/postcss8"],
+  build: {
+    postcss: {
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+      },
+    },
+  },
   head: {
     title: "nuxt2",
     htmlAttrs: {
@@ -25,7 +34,6 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
   plugins: ["~/plugins/disableBackButton.client.js"],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -43,7 +51,4 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [],
-
-  // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
 };
